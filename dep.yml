@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydep
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: swiggy
+  template:
+    metadata:
+      name: mytemp
+      labels:
+        app: swiggy
+    spec:
+      containers:
+        - name: mycon
+          image: naveen402/myimg:latets 
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "20Mi"
+              cpu: "20m"
+            limits:
+              memory: "50Mi"
+              cpu: "250m"
+
+      imagePullSecrets:
+        - name: regcred
+
